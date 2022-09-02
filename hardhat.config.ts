@@ -19,7 +19,7 @@ module.exports = {
     ganache: {
 	    url: "http://127.0.0.1:8545",
       accounts: "remote", // Using node's accounts
-      from: "0x1" // Default sender. e.g. this account will be default owner of deployed contract  
+      from: "0x1" // Default sender. e.g. this account will be default owner of deployed contract
     }
   },
   solidity: {
@@ -35,7 +35,8 @@ module.exports = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts"
+    artifacts: "./artifacts",
+    deploy: "./scripts"
   },
   mocha: {
     timeout: 40000
