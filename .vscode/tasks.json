@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "npx hardhat compile",
+			"group": "build",
+			"label": "hardhat compile"
+		},
+		{
+			"type": "shell",
+			"command": "npx hardhat test",
+			"group": "build",
+			"label": "hardhat test"
+		},
+		{
+			"type": "shell",
+			"command": "npx hardhat run scripts/deploy.ts --show-stack-traces", // will use default network defined in config.ts
+			"group": "build",
+			"label": "hardhat deploy",
+			"dependsOn": ["hardhat compile"]
+		},
+		{
+			"type": "shell",
+			"command": "npx hardhat console", // will use default network defined in config.ts
+			"group": "build",
+			"label": "hardhat deploy and console",
+			"dependsOn": ["hardhat deploy"],
+			""
+		}
+	]
+}
