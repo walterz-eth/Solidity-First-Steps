@@ -129,7 +129,7 @@ contract ContractBasics {
         paused = _val;
     }
 
-    //_address: direccion que recibira los fondos restantes del contrato
+    //_to: address to send remaining contract balance to
     function destroySmartContract (address payable _to) public {
         require (msg.sender == owner, "You are not the owner, cannot destroy");
         selfdestruct (_to);
