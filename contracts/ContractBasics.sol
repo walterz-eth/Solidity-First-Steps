@@ -11,7 +11,7 @@ contract ContractBasics {
 
     */
     address public owner;
-    constructor () public {
+    constructor () {
         owner = msg.sender;
     }
 
