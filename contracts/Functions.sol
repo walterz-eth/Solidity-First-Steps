@@ -44,6 +44,12 @@ contract Functions {
     }
 
     /*
+
+        Used for interacting with the smart contract when no other
+        function matches the call.
+        
+        NOT FOR RECEIVING ETHER
+
         see https://docs.soliditylang.org/en/v0.6.7/060-breaking-changes.html#semantic-and-syntactic-changes
         
         "The new fallback function is called when no other function matches 
