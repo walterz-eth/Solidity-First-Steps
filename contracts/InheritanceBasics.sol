@@ -14,7 +14,7 @@ contract Owned {
 contract InheritanceBasics is Owned {
 
     constructor () {
-        // Owned.constructor is automatically called
+        // Owned.constructor is called first
     }
 
     function getOwner () public view returns (address) {
