@@ -25,6 +25,7 @@ contract InheritanceComposition is Base1,Base2 {
 
     event StringEvent3 (string _string);
 
+    // WARNING: Order of override statement arguments DOESN'T change declared composition order of the contract! 
     function func () public override (Base1,Base2) {
         super.func();
         emit StringEvent3 ("InheritanceComposition.func()");
