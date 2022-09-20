@@ -1,12 +1,17 @@
-pragma solidity ^0.6.0;
+//SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.9;
 
 contract A {
+
+    error LowLevelError(bytes _reason);
+
     function requireFailure() public pure {
         require(false, "requireFailure");
     }
     
     function revertFailure() public pure {
-        revert("revertFailure");
+        revert LowLevelError ("revertFailure");
     }
     
     function assertFailure() public pure {
@@ -18,9 +23,9 @@ contract B {
     A instA;
     
     event Error(string _reason);
-    event LowLevelError(bytes _reason);
+    event LowLevelEvent(bytes _reason);
     
-    constructor() public {
+    constructor() {
         instA = new A();
     }
     
@@ -30,8 +35,8 @@ contract B {
         // In every case, errors are cathed, BUT TARNSACTION DO NOT FAIL !!!
         // (Try deploying contract A and calling it's functions, to see how transactions fail
 
-        try instA.assertFailure() {
-        //try instA.revertFailure() {
+        //try instA.assertFailure() {
+        try instA.revertFailure() {
         //try instA.requireFailure() {
             return true;
         } catch Error(string memory reason) {
@@ -44,7 +49,7 @@ contract B {
             // This is executed in case revert() was used
             // or there was a failing assertion, division
             // by zero, etc. inside getData.
-            emit LowLevelError(lowLevelData);
+            emit LowLevelEvent(lowLevelData);
             return false;
         }
     }
