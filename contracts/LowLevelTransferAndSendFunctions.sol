@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.9;
 
-contract TransferAndSendFunctionCalls {
+contract LowLevelTransferAndSendFunctions {
 
     event SendCallFailed (string _message);
 
