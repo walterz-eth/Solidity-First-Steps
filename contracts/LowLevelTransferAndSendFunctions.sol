@@ -23,6 +23,8 @@ contract LowLevelTransferAndSendFunctions {
             - It will fail if the call stack depth is at 1024
             - It will fail if receiver runs out of gas (our case)
 
+            *** If it returns TRUE, it doesn't mean that the transaction didn't fail !!!
+
          */
 
 
