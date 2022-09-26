@@ -50,7 +50,7 @@ contract Sender {
 
         // *** WHY (bool success, ) ???? ***
         // '(bool success' : stores the result of the transaction
-        // ', )' : stores any return value of called payload function (nothing in this case)
+        // ', bytes memory _returnData)' : stores any return value of called payload function (nothing in this case)
 
     }
 
