@@ -1,6 +1,7 @@
 const enableMetaMaskButton = document.querySelector('.enableMetamask');
 const statusText = document.querySelector('.statusText');
 const listenToEventsButton = document.querySelector('.startStopEventListener');
+const getEventsButton = document.querySelector('.getEventsButton');
 const contractAddr = document.querySelector('#address');
 const contractAbi = document.querySelector('#abi');
 const eventResult = document.querySelector('.eventResult');
@@ -10,6 +11,9 @@ enableMetaMaskButton.addEventListener('click', () => {
 });
 listenToEventsButton.addEventListener('click', () => {
   listenToEvents();
+});
+getEventsButton.addEventListener('click', () => {
+  getEvents();
 });
 
 let accounts;
@@ -46,11 +50,25 @@ async function enableDapp() {
 async function listenToEvents() {
   
   let abi = JSON.parse(contractAbi.value);
-  
   let contractInstance = new web3.eth.Contract(abi, contractAddr.value);
+  
+  // LISTEN for events
   contractInstance.events.ChangeEvent().on("data", (event) => {
-  	eventResult.innerHTML = JSON.stringify(event) + "<br />=====<br />" + eventResult.innerHTML;
-  	
-  	console.log ("Transaction mined.");
+  	eventResult.innerHTML = "NEW EVENT data received: " + "<br/>" + JSON.stringify(event) + "<br />=====<br />" + eventResult.innerHTML;
+  });
+}
+
+async function getEvents() {
+  
+  let abi = JSON.parse(contractAbi.value);
+  let contractInstance = new web3.eth.Contract(abi, contractAddr.value);
+  
+  // Now, let's QUERY events:
+  contractInstance.getPastEvents("ChangeEvent", {fromBlock: 0}).then((event) => {
+  	eventResult.innerHTML = "QUERIED EVENT data received: " + "<br/>" + JSON.stringify(event) + "<br />=====<br />" + eventResult.innerHTML;
+  });
+  // Now, let's FILTER by topic (arguments marked as 'indexed'):
+  contractInstance.getPastEvents("ChangeEvent", {filter:{_value: false}, fromBlock: 0}).then((event) => {
+  	eventResult.innerHTML = "FILTERED EVENT data received: " + "<br/>" + JSON.stringify(event) + "<br />=====<br />" + eventResult.innerHTML;
   });
 }
