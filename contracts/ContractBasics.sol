@@ -59,6 +59,10 @@ contract ContractBasics {
         myString = _myString;
     }
 
+    function compareStrings (string calldata _a, string calldata _b) public view returns(bool) {
+        return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b));
+    }
+
 
     /*
 
