@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" defer></script>
+	<script src="static/js/app.js" defer></script>
+</head>
+
+<body>
+
+<button class="enableMetamask">
+Enable MetaMask
+</button>
+<h2><span class="statusText"></span></h2>
+
+
+<button class="startStopEventListener" disabled="true" >
+Listen to Events from contract: 
+</button>
+
+<span class="">ABI</span>
+<input type="text" id="abi" placeholder="Contract ABI" disabled="true" />
+
+<span class="">Address</span>
+<input type="text" id="address" placeholder="Contract Address" disabled="true" />
+
+<span class="">Event data:</span>
+<span class="eventResult">
+  
+</span>
+<br />
+
+</body>
+
+</html>
